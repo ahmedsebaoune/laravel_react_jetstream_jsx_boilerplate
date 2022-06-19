@@ -11,13 +11,13 @@ const mix = require('laravel-mix');
  |
  */
 
-mix .js('resources/js/app.js', 'public/js')
-    .react()
-    .extract(['react'])
-    .postCss('resources/css/app.css', 'public/css',
-        [require('tailwindcss')]
-    )
-    .webpackConfig(require('./webpack.config'))
+mix.js('resources/js/app.js', 'public/js').react()
+    .postCss('resources/css/app.css', 'public/css', [
+        require('tailwindcss'),
+    ])
+    .alias({
+        '@': 'resources/js',
+    });
 
 if (mix.inProduction()) {
     mix.version();
